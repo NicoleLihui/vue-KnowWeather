@@ -1,0 +1,76 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+a {
+    text-decoration: none;
+    color:  rgb(100, 200, 255);
+}
+a:hover {
+    color: dodgerblue;
+}
+li {
+    list-style: none;
+}
+#app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.logo {
+    margin: 0 200px 40px;
+    height: 40px;
+}
+.search-container {
+    display: flex;
+    padding: 0 0 10px;
+    height: 45px;
+    line-height: 45px;
+}
+.search {
+    outline: none;
+    border: 1px solid #ccc;
+    height: 40px;
+    width: 500px;
+    padding: 0 10px;
+}
+.searchBtn {
+    outline: none;
+    border: none;
+    width: 80px;
+    height: 42px;
+    background-color: rgb(109, 210, 241);
+}
+.cities {
+    font-size: 14px;
+    text-align: left;
+    margin: 0 0 40px -470px;
+}
+.weather-list {
+    display: none;
+    text-align: center;
+    justify-content: center;
+    color: rgb(238, 177, 8);
+    font-weight: 700;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.day {
+    border-right: 1px solid #ddd;
+}
+.day:nth-of-type(5) {
+    border-right: 0;
+}
+.weather-list.active {
+    display: flex;
+}
+.weather-list li {
+    padding: 0 10px;
+}
+.date {
+    font-size: 14px;
+    font-weight: normal;
+    color: #999;
+    padding-top: 10px;
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <title>weather</title>
+    <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+    <div id="app">
+        <!-- 搜索框 -->
+        <div>
+            <img class="logo" src="./img/logo.png" />
+            <div class="search-container">
+                <input type="text" class="search" placeholder="输入城市查询天气" v-model="city" @keyup.enter="searchWeather" /><button class="searchBtn" @click = "searchWeather">搜索</button>
+            </div>
+        </div>
+            <div class="cities">
+                <a href="JavaScript:;" @click="changeCity('北京')">北京</a>
+                <a href="JavaScript:;" @click="changeCity('上海')">上海</a>
+                <a href="JavaScript:;" @click="changeCity('深圳')">深圳</a>
+                <a href="JavaScript:;" @click="changeCity('广州')">广州</a>
+            </div>
+        <!-- 天气显示区域 -->
+        <div>
+            <ul class="weather-list" :class="{active: isActive}">
+                <li class="day" v-for="weather in weatherList">
+                    <div class="weather">{{weather.type}}</div>
+                    <div class="temperature">
+                        <span class="low">{{weather.low}}~</span>
+                        <span class="high">{{weather.high}}</span>
+                    </div>
+                    <div class="date">{{weather.date}}</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="../vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                weatherList: [],
+                city: '',
+                isActive: false
+            },
+            methods: {
+                searchWeather(){
+                    let this_ = this;
+                    axios.get(`http://wthrcdn.etouch.cn/weather_mini?city=${this.city}`)
+                    .then((response) => {
+                        this_.weatherList = response.data.data.forecast;
+                        this_.isActive = true;
+                    }, (err) => {
+                        console.log(err);
+                    })
+                },
+                changeCity(city) {
+                    this.city = city;
+                    this.searchWeather()
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
